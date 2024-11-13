@@ -50,14 +50,14 @@ const Login = () => {
                             className="form-input"
                             placeholder="Enter your password"
                             value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            onChange={(e) => setPassword(e.target.value)} 
                             required
                         />
                     </div>
                     <button type="submit" className="btn-login">Login</button>
                 </form>        
                 <p className="register-text">
-                    Don't have an account? ... <a href="/register">Register here</a>
+                    Don't have an account?<a href="/register">Register here</a>
                 </p>
             </div>
         </div>
