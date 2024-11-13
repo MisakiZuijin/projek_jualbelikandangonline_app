@@ -1,0 +1,105 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: linear-gradient(#00000069, #00000069), url('/public/wallpaperbetter.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+}
+
+/* Card */
+.login-card {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.95);
+    gap: 20px;
+    width: 100%;
+    max-width: 350px;
+    height: 500px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Title */
+.login-title {
+    font-size: 48px;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+/* Form */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 7px;
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.form-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: #61994D;
+}
+
+/* Button */
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #61994D;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-login:hover {
+    background-color: #4d793d;
+}
+
+/* Register Text */
+.register-text {
+    font-size: 14px;
+    color: #555;
+    margin-top: 20px;
+}
+
+.register-text a {
+    color: #61994D;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-text a:hover {
+    text-decoration: underline;
+}

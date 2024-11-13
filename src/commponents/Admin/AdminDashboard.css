@@ -1,0 +1,196 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.admin-dashboard {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+.admin-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px;
+    border-radius: 0px 0px 75px 0px;
+    background: linear-gradient(135deg,#61994D, #385c2b);
+    color: #fff;
+    position: fixed;
+}
+
+.store-name {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.search-bar-admin {
+    padding: 10px;
+    border: none;
+    border-radius: 50px;
+    width: 450px;
+}
+
+.search-bar-admin:focus{
+    outline: none;
+}
+
+.order-button {
+    padding: 10px;
+    width: 125px;
+    font-size:18px;
+    background-color: #ffffff;
+    border: none;
+    color: #000000;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+}
+
+.order-button:hover{
+    background-color: #eeeeee;
+}
+
+.admin-info {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.admin-name {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.admin-profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+/* Popup Menu */
+.popup-menu {
+    position: absolute;
+    top: 60px; /* Sesuaikan jarak dari header */
+    right: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    width: 150px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-item {
+    padding: 10px;
+    color: #333;
+    text-align: left;
+    text-decoration: none;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.75s ease;
+}
+
+.popup-item:hover {
+    border-radius: 8px;
+    background-color: #f4f4f4;
+}
+
+.logout-button {
+    border: none;
+    background: none;
+    color: #d9534f;
+    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.5s ease;
+}
+
+.logout-button:hover {
+    background-color: #f4f4f4;
+}
+
+.dashboard-content {
+    flex: 1;
+    padding: 100px 20px 20px 30px;
+    background-color: #f7f7f7;
+}
+
+.add-product-button {
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #61994D;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 1em;
+    align-self: flex-end;
+}
+
+.add-product-button:hover{
+    background-color: #4d793d;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-card-admin {
+    width: calc(25% - 20px);
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px hsl(0deg 0% 0% / 0.2);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.product-price,
+.product-sold,
+.product-stock {
+    font-size: 0.9em;
+    margin: 5px 0;
+}
+
+.edit-button,
+.delete-button {
+    padding: 6px 12px;
+    margin: 10px 10px 0px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-button {
+    width: 75px;
+    background-color: #61994D;
+    color: #fff;
+}
+
+.delete-button {
+    width: 75px;
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.admin-footer {
+    background: linear-gradient(135deg, #414141, #141414);
+    color: white;
+    text-align: left;
+    width: 100%;
+    padding: 15px;
+}

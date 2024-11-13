@@ -1,0 +1,135 @@
+/* Container utama untuk halaman edit profil */
+.edit-profile-background {
+    background-image: linear-gradient(#00000069, #00000069), url('/public/6184604.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 25px;
+    font-family: Arial, sans-serif;
+}
+
+.edit-profile-container {
+    max-width: 450px;
+    max-height: 80%;
+    margin: 0px auto;
+    padding: 25px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+/* Judul halaman */
+.edit-profile-container h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Formulir edit profil */
+.edit-profile-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Kontainer untuk foto profil */
+.profile-pic-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Foto profil */
+.profile-pic {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+/* Tombol untuk mengganti foto profil */
+.change-pic-btn {
+    padding: 8px 12px;
+    background-color: #61994D;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.change-pic-btn:hover {
+    background-color: #4d793d;
+}
+
+/* Grup form */
+.form-group {
+    width: 100%;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* Label untuk setiap input */
+.form-group label {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+/* Input untuk mengisi data profil */
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    outline: none;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-group input:focus{
+    border-color: #61994D;
+}
+
+/* Tombol untuk menyimpan perubahan */
+.save-btn {
+    padding: 10px 20px;
+    background-color: #61994D;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.save-btn:hover {
+    background-color: #4d793d;
+}
+
+.back-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg,#61994D, #27441d);
+    color: white;
+    padding-left: 12px;
+    padding-bottom: 8px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.back-icon {
+    font-size: 25px;
+    font-weight: bolder;
+}
