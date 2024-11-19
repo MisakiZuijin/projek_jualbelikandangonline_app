@@ -1,25 +1,25 @@
 // src/components/PopupMenu.js
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CSS/PopupMenu.css';
 
-const PopupMenu = () => {
-    const [setShowPopup] = useState(false);
+const PopupMenu = ({ onClose }) => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
         // Logika logout (misalnya, hapus token autentikasi)
         navigate('/');
+        onClose();
     };
 
     const handleEditProfile = () => {
         navigate('/edit-profile-user');
-        setShowPopup(false); // Tutup popup setelah navigasi
+        onClose();// Tutup popup setelah navigasi
     };
 
     const handleHistory = () => {
         navigate('/history-user');
-        setShowPopup(false);
+        onClose();
     };
 
     return (

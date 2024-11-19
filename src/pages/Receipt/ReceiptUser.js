@@ -1,6 +1,7 @@
 // src/components/Receipt/Receipt.js
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import BackButton from '../../components/ButtonBack.js';
 import './Receipt.css';
 
 const purchaseHistory = [
@@ -57,16 +58,11 @@ const purchaseHistory = [
 
 const Receipt = () => {
     const { id } = useParams();
-    const navigate = useNavigate();
     const purchase = purchaseHistory.find(item => item.id === parseInt(id));
 
     if (!purchase) {
         return <p>Receipt not found.</p>;
     }
-
-    const handleBack = () => {
-        navigate(-1); // Go back to the previous page
-    };
 
     return (
         <div className="receipt-container">
@@ -102,9 +98,8 @@ const Receipt = () => {
                     </div>
                 </div>
             </div>
-            <button className="back-button" onClick={handleBack}>
-                <span className="back-icon">&#8592;</span>
-            </button>
+
+            <BackButton />
 
             <footer className="footer-receipt">
                 <p>&copy; 2024 CAGE SHOP. All rights reserved.</p>

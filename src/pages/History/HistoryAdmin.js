@@ -1,13 +1,14 @@
 // src/components/History/History.js
 import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ProfileAdminContext } from '../../context/ProfileAdminContext';
+import PopupMenu from '../../components/PopupMenu.js';
+import BackButton from '../../components/ButtonBack.js';
 import './History.css';
 
 const History = () => {
     const { profilePic } = useContext(ProfileAdminContext);
     const [showPopup, setShowPopup] = useState(false);
-    const navigate = useNavigate();
 
     // Sample data of purchase history
     const purchaseHistory = [
@@ -54,19 +55,6 @@ const History = () => {
         setShowPopup(!showPopup);
     };
 
-    const handleLogout = () => {
-        navigate('/');
-    };
-
-    const handleEditProfile = () => {
-        navigate('/edit-profile-user');
-        setShowPopup(false);
-    };
-
-    const handleBack = () => {
-        navigate(-2); // Go back to the previous page
-    };
-
     return (
         <div className="history-container">
             <header className="history-header">
@@ -75,13 +63,8 @@ const History = () => {
                     <span className="user-name">UserName</span>
                     <img className="profile-pic-history-user" src={profilePic} alt="Profile" />
                 </div>
-                {showPopup && (
-                    <div className="popup-menu">
-                        <Link onClick={handleEditProfile} to="/edit-profile-user" className="popup-item">Edit Profile</Link>
-                        <Link to="/history-user" className="popup-item">History</Link>
-                        <button onClick={handleLogout} className="popup-item logout-button">Logout</button>
-                    </div>
-                )}
+
+                {showPopup && <PopupMenu onClose={togglePopup} />}
             </header>
 
             <main className="history-content">
@@ -114,11 +97,10 @@ const History = () => {
                     ))}
                 </div>
             </main>
-            <button className="back-button" onClick={handleBack}>
-                <span className="back-icon">&#8592;</span>
-            </button>
 
-            <footer className="footer">
+            <BackButton />
+
+            <footer className="footer-history">
                 <p>&copy; 2024 CAGE SHOP. All rights reserved.</p>
             </footer>
         </div>

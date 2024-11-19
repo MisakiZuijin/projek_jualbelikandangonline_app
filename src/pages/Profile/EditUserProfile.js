@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ProfileUserContext } from '../../context/ProfileUserContext.js';
+import BackButton from '../../components/ButtonBack.js';
 import './EditProfile.css';
 
 const EditUserProfile = () => {
@@ -28,10 +29,6 @@ const EditUserProfile = () => {
         // Logika untuk menyimpan perubahan profil
         console.log("Profile Updated:", { username, email, address, phone });
         navigate('/home'); // Kembali ke halaman beranda setelah menyimpan perubahan
-    };
-
-    const handleBack = () => {
-        navigate(-2); // Go back to the previous page
     };
 
     return (
@@ -96,9 +93,8 @@ const EditUserProfile = () => {
                     <button type="submit" className="save-btn">Save Changes</button>
                 </form>
             </div>
-            <button className="back-button" onClick={handleBack}>
-                <span className="back-icon">&#8592;</span>
-            </button>
+
+            <BackButton/>
         </div>
     );
 };

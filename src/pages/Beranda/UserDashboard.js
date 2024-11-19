@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
-import { Link, useNavigate} from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import { ProfileUserContext } from '../../context/ProfileUserContext';
+import PopupMenu from '../../components/PopupMenu.js';
 import './UserDashboard.css';
 
 const Home = () => {
@@ -10,21 +11,6 @@ const Home = () => {
 
     const togglePopup = () => {
         setShowPopup(!showPopup);
-    };
-
-    const handleLogout = () => {
-        // Logika logout (misalnya, hapus token autentikasi)
-        navigate('/');
-    };
-
-    const handleEditProfile = () => {
-        navigate('/edit-profile-user');
-        setShowPopup(false); // Tutup popup setelah navigasi
-    };
-
-    const handleHistory = () => {
-        navigate('/history-user');
-        setShowPopup(false);
     };
 
     const handleCart = () => {
@@ -171,14 +157,8 @@ const Home = () => {
                     <span className="user-name" onClick={togglePopup}>UserName</span>
                     <img className="profile-pic-home" src={profilePic} alt="Profile" onClick={togglePopup}/>
                 </div>
-                {/* Popup Menu */}
-                {showPopup && (
-                    <div className="popup-menu">
-                        <Link onClick={handleEditProfile} to="/edit-profile-user" className="popup-item">Edit Profile</Link>
-                        <Link onClick={handleHistory} to="/history-user" className="popup-item">History</Link>
-                        <button onClick={handleLogout} className="popup-item logout-button">Logout</button>
-                    </div>
-                )}
+                
+                {showPopup && <PopupMenu onClose={togglePopup} />}
             </header>
 
             <main className="product-display">

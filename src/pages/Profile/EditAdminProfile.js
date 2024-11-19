@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ProfileAdminContext } from '../../context/ProfileAdminContext.js';
+import BackButton from '../../components/ButtonBack.js';
 import './EditProfile.css';
 
 const EditAdminProfile = () => {
@@ -92,6 +93,8 @@ const EditAdminProfile = () => {
                     <button type="submit" className="save-btn">Save Changes</button>
                 </form>
             </div>
+            
+            <BackButton />
         </div>
     );
 };

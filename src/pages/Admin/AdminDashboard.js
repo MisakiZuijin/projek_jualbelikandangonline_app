@@ -1,31 +1,15 @@
 // AdminDashboard.js
 import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { ProfileAdminContext } from '../../context/ProfileAdminContext';
+import PopupMenu from '../../components/PopupMenu.js';
 import './AdminDashboard.css';
 
 const AdminDashboard = () => {
     const { profilePic } = useContext(ProfileAdminContext);
     const [showPopup, setShowPopup] = useState(false);
-    const navigate = useNavigate();
 
     const togglePopup = () => {
         setShowPopup(!showPopup);
-    };
-
-    const handleLogout = () => {
-        // Logika logout, seperti menghapus token autentikasi
-        navigate('/');
-        setShowPopup(false);
-    };
-    const handleEditProfile = () => {
-        navigate('/edit-profile-admin');
-        setShowPopup(false);
-    };
-
-    const handleHistory = () => {
-        navigate('/history-admin');
-        setShowPopup(false);
     };
 
     const [products, setProducts] = useState([
@@ -65,13 +49,8 @@ const AdminDashboard = () => {
                     <span className="admin-name">AdminName</span>
                     <img className="admin-profile-pic" src={profilePic} alt="Profile" />
                 </div>
-                {showPopup && (
-                    <div className="popup-menu">
-                        <Link onClick={handleEditProfile} to="/edit-profile-admin" className="popup-item">Edit Profile</Link>
-                        <Link onClick={handleHistory} to="/history-admin" className="popup-item">History</Link>
-                        <button onClick={handleLogout} className="popup-item logout-button">Logout</button>
-                    </div>
-                )}
+                
+                {showPopup && <PopupMenu onClose={togglePopup} />}
             </header>
 
             <main className="dashboard-content">

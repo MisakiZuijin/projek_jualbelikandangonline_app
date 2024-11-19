@@ -36,7 +36,7 @@ const Cart = () => {
                     <img className="profile-pic-cart" src={profilePic} alt="Profile" onClick={togglePopup} />
                 </div>
 
-                {showPopup && <PopupMenu />}
+                {showPopup && <PopupMenu onClose={togglePopup} />}
             </header>
 
             <main className="cart-content">
