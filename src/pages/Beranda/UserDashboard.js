@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate} from 'react-router-dom';
 import { ProfileUserContext } from '../../context/ProfileUserContext';
-import './Home.css';
+import './UserDashboard.css';
 
 const Home = () => {
     const { profilePic } = useContext(ProfileUserContext);

@@ -1,16 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import Home from './commponents/Beranda/Home.js';
-import Login from './commponents/Login/Login.js';
-import EditUserProfile from './commponents/Profile/EditUserProfile.js';
-import EditAdminProfile from './commponents/Profile/EditAdminProfile.js';
-import AdminDashboard from './commponents/Admin/AdminDashboard.js';
-import HistoryUser from './commponents/History/HistoryUser.js'
-import HistoryAdmin from './commponents/History/HistoryAdmin.js'
-import ReceiptUser from './commponents/Receipt/ReceiptUser.js';
-import ReceiptAdmin from './commponents/Receipt/ReceiptAdmin.js';
-import ProductDetails from './commponents/ProductDetails/ProductDetails.js';
-import Cart from './commponents/Carts/Cart.js';
+import Home from './pages/Beranda/UserDashboard.js';
+import Login from './pages/Login/Login.js';
+import EditUserProfile from './pages/Profile/EditUserProfile.js';
+import EditAdminProfile from './pages/Profile/EditAdminProfile.js';
+import AdminDashboard from './pages/Admin/AdminDashboard.js';
+import HistoryUser from './pages/History/HistoryUser.js'
+import HistoryAdmin from './pages/History/HistoryAdmin.js'
+import ReceiptUser from './pages/Receipt/ReceiptUser.js';
+import ReceiptAdmin from './pages/Receipt/ReceiptAdmin.js';
+import ProductDetails from './pages/ProductDetails/ProductDetails.js';
+import Cart from './pages/Carts/Cart.js';
 import { ProfileUserProvider } from './context/ProfileUserContext';
 import { ProfileAdminProvider } from './context/ProfileAdminContext';
 import { CartProvider } from './context/CartContext';

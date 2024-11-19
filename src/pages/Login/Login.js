@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import './Login.css';
 import { useNavigate } from 'react-router-dom';
+import InputField from '../../components/InputField.js';
+import ButtonLogin from '../../components/ButtonLogin.js';
+import './Login.css';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -30,32 +32,24 @@ const Login = () => {
             <div className="login-card">
                 <h2 className="login-title">LOGIN</h2>
                 <form onSubmit={handleLogin}>
-                    <div className="form-group">
-                        <label htmlFor="email">Email</label>
-                        <input
-                            type="email"
-                            id="email"
-                            className="form-input"
-                            placeholder="Enter your email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Password</label>
-                        <input
-                            type="password"
-                            id="password"
-                            className="form-input"
-                            placeholder="Enter your password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)} 
-                            required
-                        />
-                    </div>
-                    <button type="submit" className="btn-login">Login</button>
-                </form>        
+                    <InputField
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        label="Email"
+                    />
+                    <InputField
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        label="Password"
+                    />
+                    <ButtonLogin text="Login" />
+                </form>
                 <p className="register-text">
                     Don't have an account?<a href="/register">Register here</a>
                 </p>
