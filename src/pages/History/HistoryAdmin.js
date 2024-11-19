@@ -7,8 +7,10 @@ import BackButton from '../../components/ButtonBack.js';
 import './History.css';
 
 const History = () => {
-    const { profilePic } = useContext(ProfileAdminContext);
+    const { profile } = useContext(ProfileAdminContext);
     const [showPopup, setShowPopup] = useState(false);
+
+    const role = 'admin';
 
     // Sample data of purchase history
     const purchaseHistory = [
@@ -61,10 +63,10 @@ const History = () => {
                 <h1 className="store-name">CAGE SHOP</h1>
                 <div className="user-info" onClick={togglePopup}>
                     <span className="user-name">UserName</span>
-                    <img className="profile-pic-history-user" src={profilePic} alt="Profile" />
+                    <img className="profile-pic-history-admin" src={profile.profilePic} alt="Profile" onClick={togglePopup}/>
                 </div>
 
-                {showPopup && <PopupMenu onClose={togglePopup} />}
+                {showPopup && <PopupMenu role={role} onClose={togglePopup} />}
             </header>
 
             <main className="history-content">

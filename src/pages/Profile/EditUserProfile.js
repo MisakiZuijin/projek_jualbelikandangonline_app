@@ -1,102 +1,51 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ProfileUserContext } from '../../context/ProfileUserContext.js';
+import ProfilePicture from '../../components/ProfilePicture.js';
+import ProfileForm from '../../components/ProfileForm.js';
 import BackButton from '../../components/ButtonBack.js';
 import './EditProfile.css';
 
-const EditUserProfile = () => {
-    const { profilePic, setProfilePic } = useContext(ProfileUserContext);
-    const [username, setUsername] = useState("Your Username");
-    const [email, setEmail] = useState("your-email@example.com");
-    const [address, setAddress] = useState("Your Address");
-    const [phone, setPhone] = useState("081234567890");
-
+const EditAdminProfile = () => {
+    const { profile, updateProfile } = useContext(ProfileUserContext);
     const navigate = useNavigate();
+    
+    // Handle case where `profile` is undefined
+    if (!profile) {
+        return <div>Loading profile...</div>;
+    }
 
-    const handleProfilePicChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setProfilePic(reader.result);
-            };
-            reader.readAsDataURL(file);
-        }
-    };
+ 
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Logika untuk menyimpan perubahan profil
-        console.log("Profile Updated:", { username, email, address, phone });
-        navigate('/home'); // Kembali ke halaman beranda setelah menyimpan perubahan
+        console.log("Profile Updated:", profile);
+        navigate('/home');
     };
 
     return (
         <div className="edit-profile-background">
             <div className="edit-profile-container">
                 <h2>Edit Profile</h2>
-                <form onSubmit={handleSubmit} className="edit-profile-form">
-                    <div className="profile-pic-container">
-                        <img src={profilePic} alt="Profile" className="profile-pic" />
-                        <input
-                            type="file"
-                            id="profilePicInput"
-                            onChange={handleProfilePicChange}
-                            style={{ display: 'none' }}
-                        />
-                        <button type="button" onClick={() => document.getElementById('profilePicInput').click()} className="change-pic-btn">
-                            Change Profile Picture
-                        </button>
-                    </div>
-
-                    <div className="form-group">
-                        <label>Username</label>
-                        <input
-                            type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            required
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label>Email</label>
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label>Address</label>
-                        <input
-                            type="text"
-                            value={address}
-                            onChange={(e) => setAddress(e.target.value)}
-                            required
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label>Phone Number</label>
-                        <input
-                            type="tel"
-                            value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
-                            required
-                        />
-                    </div>
-
-                    {/* Input fields lainnya */}
-                    <button type="submit" className="save-btn">Save Changes</button>
-                </form>
+                <ProfilePicture
+                    profile={profile}
+                    onChange={(newPic) => updateProfile({ profilePic: newPic })}
+                />
+                <ProfileForm
+                    username={profile.username}
+                    setUsername={(value) => updateProfile({ username: value })}
+                    email={profile.email}
+                    setEmail={(value) => updateProfile({ email: value })}
+                    address={profile.address}
+                    setAddress={(value) => updateProfile({ address: value })}
+                    phone={profile.phone}
+                    setPhone={(value) => updateProfile({ phone: value })}
+                    onSubmit={handleSubmit}
+                />
             </div>
-
-            <BackButton/>
+            <BackButton />
         </div>
     );
 };
 
-export default EditUserProfile;
+export default EditAdminProfile;

@@ -8,11 +8,13 @@ import BackButton from '../../components/ButtonBack.js';
 import './ProductDetails.css';
 
 const ProductDetails = () => {
-    const { profilePic } = useContext(ProfileUserContext);
+    const { profile } = useContext(ProfileUserContext);
     const [showPopup, setShowPopup] = useState(false);
     const { addToCart } = useContext(CartContext);
     const location = useLocation();
     const navigate = useNavigate();
+
+    const role = 'user';
 
     const togglePopup = () => {
         setShowPopup(!showPopup);
@@ -42,10 +44,10 @@ const ProductDetails = () => {
                 <div className="user-info">
                     <i className="fas fa-shopping-cart cart-icon" onClick={handleCart} to="/cart"></i>
                     <span className="user-name" onClick={togglePopup}>UserName</span>
-                    <img className="profile-pic-product" src={profilePic} alt="Profile" onClick={togglePopup}/>
+                    <img className="profile-pic-product" src={profile.profilePic} alt="Profile" onClick={togglePopup}/>
                 </div>
 
-                {showPopup && <PopupMenu onClose={togglePopup} />}
+                {showPopup && <PopupMenu role={role} onClose={togglePopup} />}
             </header>
 
             <main className="product-details-content">
@@ -61,7 +63,7 @@ const ProductDetails = () => {
                         <p>Stock: {product.stock}</p>
                         <p>Price: Rp {product.price.toLocaleString()}</p>
                         <p>Payment Methods: {product.paymentMethods ? product.paymentMethods.join(', ') : 'N/A'}</p>
-                        <p className="description-content">Description: {product.description || 'No description available.'}</p>
+                        <p className="description-content">{product.description || 'No description available.'}</p>
                     </div>
                     <div className="product-button">
                         <button onClick={handleAddToCart} className="add-to-cart-button">Tambah Ke Keranjang</button>

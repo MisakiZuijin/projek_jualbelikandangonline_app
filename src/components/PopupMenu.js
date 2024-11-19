@@ -1,9 +1,8 @@
-// src/components/PopupMenu.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CSS/PopupMenu.css';
 
-const PopupMenu = ({ onClose }) => {
+const PopupMenu = ({ role, onClose }) => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -13,12 +12,20 @@ const PopupMenu = ({ onClose }) => {
     };
 
     const handleEditProfile = () => {
-        navigate('/edit-profile-user');
-        onClose();// Tutup popup setelah navigasi
+        if (role === 'admin') {
+            navigate('/edit-profile-admin'); // Rute untuk admin
+        } else {
+            navigate('/edit-profile-user'); // Rute untuk user
+        }
+        onClose(); // Tutup popup setelah navigasi
     };
 
     const handleHistory = () => {
-        navigate('/history-user');
+        if (role === 'admin') {
+            navigate('/history-admin'); // Rute untuk admin
+        } else {
+            navigate('/history-user'); // Rute untuk user
+        }
         onClose();
     };
 

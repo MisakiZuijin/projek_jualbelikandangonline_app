@@ -9,8 +9,10 @@ import './Cart.css';
 
 const Cart = () => {
     const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext);
-    const { profilePic } = useContext(ProfileUserContext);
+    const { profile } = useContext(ProfileUserContext);
     const [showPopup, setShowPopup] = useState(false);
+
+    const role = 'user';
 
     const togglePopup = () => {
         setShowPopup(!showPopup);
@@ -33,10 +35,10 @@ const Cart = () => {
                 <div className="user-info">
                     <i className="fas fa-shopping-cart cart-icon"></i>
                     <span className="user-name" onClick={togglePopup}>UserName</span>
-                    <img className="profile-pic-cart" src={profilePic} alt="Profile" onClick={togglePopup} />
+                    <img className="profile-pic-cart" src={profile.profilePic} alt="Profile" onClick={togglePopup} />
                 </div>
 
-                {showPopup && <PopupMenu onClose={togglePopup} />}
+                {showPopup && <PopupMenu role={role} onClose={togglePopup} />}
             </header>
 
             <main className="cart-content">

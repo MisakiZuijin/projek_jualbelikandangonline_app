@@ -1,12 +1,14 @@
 // AdminDashboard.js
-import React, { useContext, useState } from 'react';
-import { ProfileAdminContext } from '../../context/ProfileAdminContext';
+import React, { useState, useContext } from 'react';
 import PopupMenu from '../../components/PopupMenu.js';
+import { ProfileAdminContext } from '../../context/ProfileAdminContext';
 import './AdminDashboard.css';
 
 const AdminDashboard = () => {
-    const { profilePic } = useContext(ProfileAdminContext);
+    const { profile } = useContext(ProfileAdminContext);
     const [showPopup, setShowPopup] = useState(false);
+
+    const role = 'admin';
 
     const togglePopup = () => {
         setShowPopup(!showPopup);
@@ -46,11 +48,11 @@ const AdminDashboard = () => {
                 <input type="text" className="search-bar-admin" placeholder="Cari Produk..." />
                 <button className="order-button">Pesanan</button>
                 <div className="admin-info" onClick={togglePopup}>
-                    <span className="admin-name">AdminName</span>
-                    <img className="admin-profile-pic" src={profilePic} alt="Profile" />
+                    <span className="admin-name" onClick={togglePopup}>AdminName</span>
+                    <img className="admin-profile-pic" src={profile.profilePic} alt="Profile" onClick={togglePopup}/>
                 </div>
                 
-                {showPopup && <PopupMenu onClose={togglePopup} />}
+                {showPopup && <PopupMenu role={role} onClose={togglePopup} />}
             </header>
 
             <main className="dashboard-content">

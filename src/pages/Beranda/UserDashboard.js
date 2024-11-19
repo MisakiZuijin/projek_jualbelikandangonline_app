@@ -5,9 +5,12 @@ import PopupMenu from '../../components/PopupMenu.js';
 import './UserDashboard.css';
 
 const Home = () => {
-    const { profilePic } = useContext(ProfileUserContext);
+    const { profile } = useContext(ProfileUserContext);
     const [showPopup, setShowPopup] = useState(false);
     const navigate = useNavigate();
+
+    const role = 'user';
+
 
     const togglePopup = () => {
         setShowPopup(!showPopup);
@@ -155,10 +158,10 @@ const Home = () => {
                 <div className="user-info">
                     <i className="fas fa-shopping-cart cart-icon" onClick={handleCart} to="/cart"></i>
                     <span className="user-name" onClick={togglePopup}>UserName</span>
-                    <img className="profile-pic-home" src={profilePic} alt="Profile" onClick={togglePopup}/>
+                    <img className="profile-pic-home" src={profile.profilePic} alt="Profile" onClick={togglePopup}/>
                 </div>
                 
-                {showPopup && <PopupMenu onClose={togglePopup} />}
+                {showPopup && <PopupMenu role={role} onClose={togglePopup} />}
             </header>
 
             <main className="product-display">
