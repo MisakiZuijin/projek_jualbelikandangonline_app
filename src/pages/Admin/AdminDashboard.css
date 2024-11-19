@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+*::-webkit-scrollbar {
+    display: none;
+}
+
 .admin-dashboard {
     display: flex;
     flex-direction: column;

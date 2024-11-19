@@ -2,11 +2,14 @@ import React, { useContext, useState } from 'react';
 import { useNavigate} from 'react-router-dom';
 import { ProfileUserContext } from '../../context/ProfileUserContext';
 import PopupMenu from '../../components/PopupMenu.js';
+import ProductCard from '../../components/ProductCard';
+import products from '../../data/ProductData.js';
 import './UserDashboard.css';
 
 const Home = () => {
     const { profile } = useContext(ProfileUserContext);
     const [showPopup, setShowPopup] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
 
     const role = 'user';
@@ -24,137 +27,22 @@ const Home = () => {
         // Pastikan hanya data produk sederhana yang dikirimkan
         navigate(`/product/${product.id}`, { state: { product } });
     };
-    
-    const products = [
-        {
-            id: 1,
-            image: "/Kandang-Murai.jpg",
-            name: "Kandang Murai",
-            area: "Karanganyar",
-            rating: 4.5,
-            price: 200000,
-            sold: 15,
-            stock: 30,
-            paymentMethods: ["COD", "Transfer"],
-            description: "Kandang Murai, Diameter -+ 58cm, Warna polos"
-        },
-        {
-            id: 2,
-            image: "/Kandang-Murai.jpg",
-            name: "Kandang Murai",
-            area: "Karanganyar",
-            rating: 4.5,
-            price: 200000,
-            sold: 15,
-            stock: 30,
-            paymentMethods: ["COD", "Transfer"],
-            description: "Kandang Murai, Diameter -+ 58cm, Warna polos"
-        },
-        {
-            id: 3,
-            image: "/Kandang-Murai.jpg",
-            name: "Kandang Murai",
-            area: "Karanganyar",
-            rating: 4.5,
-            price: 200000,
-            sold: 15,
-            stock: 30,
-            paymentMethods: ["COD", "Transfer"],
-            description: "Kandang Murai, Diameter -+ 58cm, Warna polos"
-        },
-        {
-            id: 4,
-            image: "/Kandang-Murai.jpg",
-            name: "Kandang Murai",
-            area: "Karanganyar",
-            rating: 4.5,
-            price: 200000,
-            sold: 15,
-            stock: 30,
-            paymentMethods: ["COD", "Transfer"],
-            description: "Kandang Murai, Diameter -+ 58cm, Warna polos"
-        },
-        {
-            id: 5,
-            image: "/Kandang-Murai.jpg",
-            name: "Kandang Murai",
-            area: "Karanganyar",
-            rating: 4.5,
-            price: 200000,
-            sold: 15,
-            stock: 30,
-            paymentMethods: ["COD", "Transfer"],
-            description: "Kandang Murai, Diameter -+ 58cm, Warna polos"
-        },
-        {
-            id: 6,
-            image: "/Kandang-Murai.jpg",
-            name: "Kandang Murai",
-            area: "Karanganyar",
-            rating: 4.5,
-            price: 200000,
-            sold: 15,
-            stock: 30,
-            paymentMethods: ["COD", "Transfer"],
-            description: "Kandang Murai, Diameter -+ 58cm, Warna polos"
-        },
-        {
-            id: 7,
-            image: "/Kandang-Murai.jpg",
-            name: "Kandang Murai",
-            area: "Karanganyar",
-            rating: 4.5,
-            price: 200000,
-            sold: 15,
-            stock: 30,
-            paymentMethods: ["COD", "Transfer"],
-            description: "Kandang Murai, Diameter -+ 58cm, Warna polos"
-        },
-        {
-            id: 8,
-            image: "/Kandang-Murai.jpg",
-            name: "Kandang Murai",
-            area: "Karanganyar",
-            rating: 4.5,
-            price: 200000,
-            sold: 15,
-            stock: 30,
-            paymentMethods: ["COD", "Transfer"],
-            description: "Kandang Murai, Diameter -+ 58cm, Warna polos"
-        },
-        {
-            id: 9,
-            image: "/Kandang-Murai.jpg",
-            name: "Kandang Murai",
-            area: "Karanganyar",
-            rating: 4.5,
-            price: 200000,
-            sold: 15,
-            stock: 30,
-            paymentMethods: ["COD", "Transfer"],
-            description: "Kandang Murai, Diameter -+ 58cm, Warna polos"
-        },
-        {
-            id: 10,
-            image: "/Kandang-Murai.jpg",
-            name: "Kandang Murai",
-            area: "Karanganyar",
-            rating: 4.5,
-            price: 200000,
-            sold: 15,
-            stock: 30,
-            paymentMethods: ["COD", "Transfer"],
-            description: "Kandang Murai, Diameter -+ 58cm, Warna polos"
-        },
-        
-        // Tambahkan produk lain sesuai kebutuhan
-    ];
+
+    const filteredProducts = products.filter(product => 
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (
         <div className="home-container">
             <header className="header">
                 <h1 className="title">CAGE SHOP</h1>
-                <input type="text" className="search-bar" placeholder="Cari Produk..."/>
+                <input 
+                    type="text" 
+                    className="search-bar" 
+                    placeholder="Cari Produk..." 
+                    value={searchTerm} 
+                    onChange={(e) => setSearchTerm(e.target.value)} 
+                />
                 <div className="user-info">
                     <i className="fas fa-shopping-cart cart-icon" onClick={handleCart} to="/cart"></i>
                     <span className="user-name" onClick={togglePopup}>UserName</span>
@@ -165,14 +53,8 @@ const Home = () => {
             </header>
 
             <main className="product-display">
-                {products.map(product => (
-                    <div key={product.id} className="product-card" onClick={() => handleProductClick(product)} >
-                        <img src={product.image} alt={product.name} className="product-image" />
-                        <h2 className="product-name">{product.name}</h2>
-                        <p className="product-price">Rp {product.price.toLocaleString()}</p>
-                        <p className="product-sold">Sold: {product.sold}</p>
-                        <p className="product-stock">Stock: {product.stock}</p>
-                    </div>
+                {filteredProducts.map((product) => (
+                    <ProductCard key={product.id} product={product} onClick={handleProductClick} />
                 ))}
             </main>
 
