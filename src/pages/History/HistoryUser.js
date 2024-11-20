@@ -62,7 +62,7 @@ const History = () => {
             <header className="history-header">
                 <h1 className="store-name">CAGE SHOP</h1>
                 <div className="user-info" onClick={togglePopup}>
-                    <span className="user-name">UserName</span>
+                    <span className="user-name">{profile.username}</span>
                     <img className="profile-pic-history-user" src={profile.profilePic} alt="Profile" onClick={togglePopup}/>
                 </div>
 

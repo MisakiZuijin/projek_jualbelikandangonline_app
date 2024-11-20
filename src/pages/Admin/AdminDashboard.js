@@ -2,11 +2,14 @@
 import React, { useState, useContext } from 'react';
 import PopupMenu from '../../components/PopupMenu.js';
 import { ProfileAdminContext } from '../../context/ProfileAdminContext';
+import ProductCardAdmin from '../../components/ProductCardAdmin';
+import products from '../../data/ProductData.js';
 import './AdminDashboard.css';
 
 const AdminDashboard = () => {
     const { profile } = useContext(ProfileAdminContext);
     const [showPopup, setShowPopup] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
 
     const role = 'admin';
 
@@ -14,41 +17,31 @@ const AdminDashboard = () => {
         setShowPopup(!showPopup);
     };
 
-    const [products, setProducts] = useState([
-        { id: 1, name: "Kandang Murai", price: 200000, sold: 15, stock: 30 },
-        { id: 2, name: "Kandang Murai", price: 200000, sold: 15, stock: 30 },
-        { id: 3, name: "Kandang Murai", price: 200000, sold: 15, stock: 30 },
-        { id: 4, name: "Kandang Murai", price: 200000, sold: 15, stock: 30 },
-        { id: 5, name: "Kandang Murai", price: 200000, sold: 15, stock: 30 },
-        { id: 6, name: "Kandang Murai", price: 200000, sold: 15, stock: 30 },
-        { id: 7, name: "Kandang Murai", price: 200000, sold: 15, stock: 30 },
-        { id: 8, name: "Kandang Murai", price: 200000, sold: 15, stock: 30 },
-        // Tambahkan produk lain di sini
-    ]);
+    const [productList, setProductList] = useState(products);
 
     const handleAddProduct = () => {
         // Tambah logika untuk menambahkan produk baru
         alert("Tambah produk baru");
     };
 
-    const handleEditProduct = (productId) => {
-        // Tambah logika untuk mengedit produk
-        alert(`Edit produk ${productId}`);
-    };
-
-    const handleDeleteProduct = (productId) => {
-        // Tambah logika untuk menghapus produk
-        setProducts(products.filter((product) => product.id !== productId));
-    };
+    const filteredProducts = productList.filter(product => 
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (
         <div className="admin-dashboard">
             <header className="admin-header">
                 <h1 className="store-name">CAGE SHOP</h1>
-                <input type="text" className="search-bar-admin" placeholder="Cari Produk..." />
+                <input 
+                    type="text" 
+                    className="search-bar" 
+                    placeholder="Cari Produk..." 
+                    value={searchTerm} 
+                    onChange={(e) => setSearchTerm(e.target.value)} 
+                />
                 <button className="order-button">Pesanan</button>
                 <div className="admin-info" onClick={togglePopup}>
-                    <span className="admin-name" onClick={togglePopup}>AdminName</span>
+                    <span className="admin-name" onClick={togglePopup}>{profile.username}</span>
                     <img className="admin-profile-pic" src={profile.profilePic} alt="Profile" onClick={togglePopup}/>
                 </div>
                 
@@ -58,19 +51,14 @@ const AdminDashboard = () => {
             <main className="dashboard-content">
                 <button className="add-product-button" onClick={handleAddProduct}>Tambah Produk</button>
                 <div className="product-list">
-                    {products.map((product) => (
-                        <div key={product.id} className="product-card-admin">
-                            <img src="/Kandang-Murai.jpg" alt={product.name} className="product-image" />
-                            <div className="product-details">
-                                <h3 className="product-name">{product.name}</h3>
-                                <p className="product-price">Harga: Rp{product.price.toLocaleString()}</p>
-                                <p className="product-sold">Terjual: {product.sold}</p>
-                                <p className="product-stock">Stok: {product.stock}</p>
-                                <div className="product-actions">
-                                    <button onClick={() => handleEditProduct(product.id)} className="edit-button">Edit</button>
-                                    <button onClick={() => handleDeleteProduct(product.id)} className="delete-button">Hapus</button>
-                                </div>
-                            </div>
+                    {filteredProducts.map((product) => (
+                        <div key={product.id}>
+                            <ProductCardAdmin
+                                key={product.id}
+                                product={product}
+                                productList={productList}
+                                setProductList={setProductList}
+                            />
                         </div>
                     ))}
                 </div>

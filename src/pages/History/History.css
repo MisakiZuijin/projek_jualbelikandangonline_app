@@ -20,6 +20,22 @@
     font-weight: bold;
 }
 
+.report-button {
+    padding: 10px;
+    width: 350px;
+    font-size:20px;
+    background-color: #ffffff;
+    border: none;
+    color: #000000;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+}
+
+.report-button:hover{
+    background-color: #eeeeee;
+}
+
 .user-info {
     display: flex;
     align-items: center;
@@ -47,7 +63,7 @@
 }
 
 .history-content {
-    padding: 100px 20px 20px 20px;
+    padding: 100px 20px 100px 20px;
 }
 
 .history-list {
@@ -104,51 +120,6 @@
 
 .receipt-button:hover {
     background-color: #385c2b;
-}
-
-/* Popup Menu */
-.popup-menu {
-    position: absolute;
-    top: 60px; /* Sesuaikan jarak dari header */
-    right: 20px;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    width: 150px;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-}
-
-.popup-item {
-    padding: 10px;
-    color: #333;
-    text-align: left;
-    text-decoration: none;
-    font-size: 14px;
-    border-bottom: 1px solid #eee;
-    transition: background-color 0.75s ease;
-}
-
-.popup-item:hover {
-    border-radius: 8px;
-    background-color: #f4f4f4;
-}
-
-.logout-button {
-    border: none;
-    background: none;
-    color: #d9534f;
-    padding: 10px;
-    text-align: left;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.5s ease;
-}
-
-.logout-button:hover {
-    background-color: #f4f4f4;
 }
 
 .footer-history {

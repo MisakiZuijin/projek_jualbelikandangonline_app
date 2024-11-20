@@ -43,7 +43,7 @@ const ProductDetails = () => {
                 <h1 className="title">CAGE SHOP</h1>
                 <div className="user-info">
                     <i className="fas fa-shopping-cart cart-icon" onClick={handleCart} to="/cart"></i>
-                    <span className="user-name" onClick={togglePopup}>UserName</span>
+                    <span className="user-name" onClick={togglePopup}>{profile.username}</span>
                     <img className="profile-pic-product" src={profile.profilePic} alt="Profile" onClick={togglePopup}/>
                 </div>
 
