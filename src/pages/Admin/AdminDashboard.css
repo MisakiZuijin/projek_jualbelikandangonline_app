@@ -85,6 +85,7 @@
 }
 
 .add-product-button {
+    width: 175px;
     margin-bottom: 20px;
     padding: 10px 20px;
     background-color: #61994D;

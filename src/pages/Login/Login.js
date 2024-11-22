@@ -13,14 +13,16 @@ const Login = () => {
         e.preventDefault();
         
         // Logika autentikasi sederhana dengan pengecekan role berdasarkan email
-        const isAdmin = email === 'admin@gmail.com' && password === 'adminpass';
-        const isUser = email === 'user@gmail.com' && password === 'userpass';
-
-        if (isAdmin) {
-            // Navigasi ke halaman Admin Dashboard
+        if (email === 'admin@gmail.com' && password === 'adminpass') {
             navigate('/admin');
-        } else if (isUser) {
-            // Navigasi ke halaman Beranda Pengguna
+            return;
+        }
+
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const user = users.find(u => u.email === email && u.password === password);
+
+        if (user) {
+            // Navigasi ke halaman beranda pengguna
             navigate('/home');
         } else {
             alert('Login gagal, periksa email dan password Anda');
