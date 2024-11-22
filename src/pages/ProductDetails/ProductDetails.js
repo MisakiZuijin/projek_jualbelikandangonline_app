@@ -29,6 +29,10 @@ const ProductDetails = () => {
         alert(`${product.name} has been added to the cart.`);
     };
 
+    const handleBuyNow = () => {
+        navigate('/pay-now', { state: { products: [product] } });
+    };
+
     // Sample product data for demonstration
     const product = location.state?.product;
 
@@ -67,7 +71,7 @@ const ProductDetails = () => {
                     </div>
                     <div className="product-button">
                         <button onClick={handleAddToCart} className="add-to-cart-button">Tambah Ke Keranjang</button>
-                        <button className="buy-now-button">Beli Sekarang</button>
+                        <button onClick={handleBuyNow} className="buy-now-button">Beli Sekarang</button>
                     </div>
                 </div>
             </main>

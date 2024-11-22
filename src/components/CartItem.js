@@ -18,18 +18,20 @@ const CartItem = ({ item, onRemove, onQuantityChange }) => {
             <img src={item.image} alt={item.name} className="cart-item-image" />
             <div className="cart-item-details">
                 <h2 className="cart-item-name">{item.name}</h2>
-                <p className="cart-item-price">Rp {item.price.toLocaleString()}</p>
-                <p className="cart-item-total">
-                    Total: Rp {(item.price * item.quantity).toLocaleString()}
-                </p>
-                <input
-                    type="number"
-                    min="1"
-                    value={item.quantity}
-                    onChange={handleQuantityChange}
-                    className="cart-item-quantity"
-                />
-                <RemoveButton onClick={handleRemove} />
+                <div className="cart-item-price-detail">
+                    <p className="cart-item-price">Rp {item.price.toLocaleString()}</p>
+                    <p className="cart-item-total">
+                        Total: Rp {(item.price * item.quantity).toLocaleString()}
+                    </p>
+                    <input
+                        type="number"
+                        min="1"
+                        value={item.quantity}
+                        onChange={handleQuantityChange}
+                        className="cart-item-quantity"
+                    />
+                    <RemoveButton onClick={handleRemove} />
+                </div>
             </div>
         </div>
     );

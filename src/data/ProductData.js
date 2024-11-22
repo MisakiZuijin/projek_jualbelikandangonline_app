@@ -8,6 +8,7 @@ const products = [
         price: 200000,
         sold: 15,
         stock: 30,
+        rekening: 8536932598295732,
         paymentMethods: ["COD", "Transfer"],
         description: "Kandang Murai, Diameter -+ 58cm, Warna polos"
     },
@@ -20,6 +21,7 @@ const products = [
         price: 200000,
         sold: 15,
         stock: 30,
+        rekening: 8536932598295732,
         paymentMethods: ["COD", "Transfer"],
         description: "Kandang Murai, Diameter -+ 58cm, Warna polos"
     },
@@ -32,6 +34,7 @@ const products = [
         price: 200000,
         sold: 15,
         stock: 30,
+        rekening: 8536932598295732,
         paymentMethods: ["COD", "Transfer"],
         description: "Kandang Murai, Diameter -+ 58cm, Warna polos"
     },
@@ -44,6 +47,7 @@ const products = [
         price: 200000,
         sold: 15,
         stock: 30,
+        rekening: 8536932598295732,
         paymentMethods: ["COD", "Transfer"],
         description: "Kandang Murai, Diameter -+ 58cm, Warna polos"
     },
@@ -56,6 +60,7 @@ const products = [
         price: 200000,
         sold: 15,
         stock: 30,
+        rekening: 8536932598295732,
         paymentMethods: ["COD", "Transfer"],
         description: "Kandang Murai, Diameter -+ 58cm, Warna polos"
     },
@@ -68,6 +73,7 @@ const products = [
         price: 200000,
         sold: 15,
         stock: 30,
+        rekening: 8536932598295732,
         paymentMethods: ["COD", "Transfer"],
         description: "Kandang Murai, Diameter -+ 58cm, Warna polos"
     },
@@ -80,6 +86,7 @@ const products = [
         price: 200000,
         sold: 15,
         stock: 30,
+        rekening: 8536932598295732,
         paymentMethods: ["COD", "Transfer"],
         description: "Kandang Murai, Diameter -+ 58cm, Warna polos"
     },
@@ -92,6 +99,7 @@ const products = [
         price: 200000,
         sold: 15,
         stock: 30,
+        rekening: 8536932598295732,
         paymentMethods: ["COD", "Transfer"],
         description: "Kandang Murai, Diameter -+ 58cm, Warna polos"
     },
@@ -104,6 +112,7 @@ const products = [
         price: 200000,
         sold: 15,
         stock: 30,
+        rekening: 8536932598295732,
         paymentMethods: ["COD", "Transfer"],
         description: "Kandang Murai, Diameter -+ 58cm, Warna polos"
     },
@@ -116,6 +125,7 @@ const products = [
         price: 200000,
         sold: 15,
         stock: 30,
+        rekening: 8536932598295732,
         paymentMethods: ["COD", "Transfer"],
         description: "Kandang Murai, Diameter -+ 58cm, Warna polos"
     },

@@ -1,0 +1,76 @@
+.pay-now-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(#00000069, #00000069), url('/public/6184604.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+.pay-now-card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    max-width: 600px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px hsl(0deg 0% 0% / 0.2);
+}
+
+.pay-now-title {
+    text-align: center;
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+.products-list {
+    margin-bottom: 20px;
+}
+
+.product-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.total {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.shipping-cost, .total-price {
+    margin: 10px 0px 10px 0px;
+}
+
+.payment-method {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    gap: 25px;
+    margin: 20px 0px 20px 0px;
+}
+
+.payment-radio {
+    margin-right: 10px;
+}
+
+.pay-now-button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #61994D;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pay-now-button:hover {
+    background-color: #4d793d;
+}

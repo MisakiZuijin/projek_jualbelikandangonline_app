@@ -9,6 +9,7 @@ export const ProfileAdminProvider = ({ children }) => {
         email: "admin@example.com",
         address: "Admin Address",
         phone: "081234567890",
+        rekening: "9469184271847",
     });
 
     const updateProfile = (updatedProfile) => {

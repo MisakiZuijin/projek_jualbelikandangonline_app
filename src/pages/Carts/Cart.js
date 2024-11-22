@@ -1,5 +1,6 @@
 // src/components/Cart/Cart.js
 import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../../context/CartContext';
 import { ProfileUserContext } from '../../context/ProfileUserContext';
 import CartItem from '../../components/CartItem.js';
@@ -11,6 +12,7 @@ const Cart = () => {
     const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext);
     const { profile } = useContext(ProfileUserContext);
     const [showPopup, setShowPopup] = useState(false);
+    const navigate = useNavigate();
 
     const role = 'user';
 
@@ -18,8 +20,8 @@ const Cart = () => {
         setShowPopup(!showPopup);
     };
 
-    const handlePayment = () => {
-        console.log("Proceeding to payment with items:", cartItems);
+    const handlePayNow = () => {
+        navigate('/pay-now', { state: { products: cartItems } });
     };
 
     // Calculate the total price of all items in the cart
@@ -58,7 +60,7 @@ const Cart = () => {
                 {cartItems.length > 0 && (
                     <div className="cart-total">
                         <h3>Total Price: Rp {cartTotal.toLocaleString()}</h3>
-                        <button onClick={handlePayment} className="pay-now-button">Pay Now</button>
+                        <button onClick={handlePayNow} className="pay-now-button">Pay Now</button>
                     </div>
                 )}
             </main>

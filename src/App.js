@@ -12,6 +12,7 @@ import ReceiptUser from './pages/Receipt/ReceiptUser.js';
 import ReceiptAdmin from './pages/Receipt/ReceiptAdmin.js';
 import ProductDetails from './pages/ProductDetails/ProductDetails.js';
 import Cart from './pages/Carts/Cart.js';
+import PayNow from './pages/PayNow/PayNow.js';
 import { ProfileUserProvider } from './context/ProfileUserContext';
 import { ProfileAdminProvider } from './context/ProfileAdminContext';
 import { CartProvider } from './context/CartContext';
@@ -36,6 +37,7 @@ function App() {
                 <Route path="/receipt-Admin/:id" element={<ReceiptAdmin />} />
                 <Route path="/product/:id" element={<ProductDetails />} />
                 <Route path="/cart" element={<Cart />} />
+                <Route path="/pay-now" element={<PayNow />} />
               </Routes>
             </div>
           </Router>
