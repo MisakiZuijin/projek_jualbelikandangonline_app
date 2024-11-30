@@ -59,7 +59,7 @@ const Cart = () => {
 
                 {cartItems.length > 0 && (
                     <div className="cart-total">
-                        <h3>Total Price: Rp {cartTotal.toLocaleString()}</h3>
+                        <h3>Total Price: Rp {cartTotal.toLocaleString('id-ID')}</h3>
                         <button onClick={handlePayNow} className="pay-now-button">Pay Now</button>
                     </div>
                 )}

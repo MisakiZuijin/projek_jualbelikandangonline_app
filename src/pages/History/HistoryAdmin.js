@@ -80,8 +80,8 @@ const History = () => {
                                 <h3 className="item-name">{item.name}</h3>
                                 <div className="item-name-container">
                                     <p>Quantity: {item.quantity}</p>
-                                    <p>Price: Rp {item.price.toLocaleString()}</p>
-                                    <p>Total: Rp {item.total.toLocaleString()}</p>
+                                    <p>Price: Rp {item.price.toLocaleString('Id-ID')}</p>
+                                    <p>Total: Rp {item.total.toLocaleString('Id-ID')}</p>
                                 </div>
                                 <div className="buyer-container">
                                     <p>Buyer: {item.buyer}</p>

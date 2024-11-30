@@ -85,9 +85,9 @@ const Receipt = () => {
                         <p>Seller: {purchase.seller}</p>
                         <p>Quantity: {purchase.quantity}</p>
                         <div className="receipt-price">
-                            <p>Price: Rp {purchase.price.toLocaleString()}</p>
-                            <p>Postage: Rp {purchase.postage.toLocaleString()}</p>
-                            <p>Total: Rp {purchase.total.toLocaleString()}</p>
+                            <p>Price: Rp {purchase.price.toLocaleString('Id-ID')}</p>
+                            <p>Postage: Rp {purchase.postage.toLocaleString('Id-ID')}</p>
+                            <p>Total: Rp {purchase.total.toLocaleString('Id-ID')}</p>
                         </div>
                     </div>
                     <div className="line"></div>

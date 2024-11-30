@@ -1,13 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate} from 'react-router-dom';
 import { ProfileUserContext } from '../../context/ProfileUserContext';
+import { ProductContext } from '../../context/ProductContext.js';
 import PopupMenu from '../../components/PopupMenu.js';
 import ProductCard from '../../components/ProductCard';
-import products from '../../data/ProductData.js';
 import './UserDashboard.css';
 
 const Home = () => {
     const { profile } = useContext(ProfileUserContext);
+    const { productList } = useContext(ProductContext);
     const [showPopup, setShowPopup] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
@@ -28,7 +29,7 @@ const Home = () => {
         navigate(`/product/${product.id}`, { state: { product } });
     };
 
-    const filteredProducts = products.filter(product => 
+    const filteredProducts = productList.filter(product => 
         product.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 

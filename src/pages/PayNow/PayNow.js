@@ -71,7 +71,7 @@ const PayNow = () => {
         // Data Penjual
         doc.text(`Nama Penjual: ${adminProfile.username}`, marginLeft, yPosition);
         yPosition += lineHeight;
-        doc.text(`Rekening Penjual: ${adminProfile.phone}`, marginLeft, yPosition);
+        doc.text(`Rekening Penjual: ${adminProfile.rekening}`, marginLeft, yPosition);
         yPosition += lineHeight + 5;
     
         // Tanggal Pemesanan
@@ -93,7 +93,7 @@ const PayNow = () => {
         const tableData = products.map(product => {
             const quantity = quantities[product.id] || 1;
             const total = product.price * quantity;
-            return [product.name, quantity, `Rp ${product.price.toLocaleString()}`, `Rp ${total.toLocaleString()}`];
+            return [product.name, quantity, `Rp ${product.price.toLocaleString('Id-ID')}`, `Rp ${total.toLocaleString('Id-ID')}`];
         });
     
         // Menambahkan Tabel dengan Warna
@@ -130,11 +130,11 @@ const PayNow = () => {
         // Biaya Ongkir
         yPosition = doc.lastAutoTable.finalY + 10; // Mendapatkan posisi terakhir tabel
         doc.setFontSize(12);
-        doc.text(`Biaya Ongkir: Rp ${shippingCost.toLocaleString()}`, marginLeft, yPosition);
+        doc.text(`Biaya Ongkir: Rp ${shippingCost.toLocaleString('Id-ID')}`, marginLeft, yPosition);
     
         // Total Harga
         yPosition += 10; // Jarak setelah ongkir
-        doc.text(`Total Harga: Rp ${calculateTotal().toLocaleString()}`, marginLeft, yPosition);
+        doc.text(`Total Harga: Rp ${calculateTotal().toLocaleString('Id-ID')}`, marginLeft, yPosition);
     
         // Unduh PDF
         doc.save('invoice.pdf');
@@ -150,6 +150,10 @@ const PayNow = () => {
         }
     };
 
+    const formatCurrency = (price) => {
+        return `Rp ${Number(price).toLocaleString('id-ID')}`;
+    };
+
     return (
         <div className="pay-now-container">
             <div className="pay-now-card">
@@ -158,7 +162,7 @@ const PayNow = () => {
                     {products.map((product) => (
                         <div key={product.id} className="product-item">
                             <span>{product.name}</span>
-                            <span>Harga: Rp {product.price.toLocaleString()}</span>
+                            <span>Harga: {formatCurrency(product.price)}</span>
                             <input
                                 type="number"
                                 min="1"
@@ -174,13 +178,13 @@ const PayNow = () => {
                     <strong>Total Harga Produk: Rp {products.reduce((total, product) => {
                         const quantity = quantities[product.id] || 1;
                         return total + product.price * quantity;
-                    }, 0).toLocaleString()}</strong>
+                    }, 0).toLocaleString('Id-ID')}</strong>
                 </div>
                 <div className="shipping-cost">
-                    <strong>Biaya Ongkir: Rp {shippingCost.toLocaleString()}</strong>
+                    <strong>Biaya Ongkir: Rp {shippingCost.toLocaleString('Id-ID')}</strong>
                 </div>
                 <div className="total-price">
-                    <strong>Total Harga: Rp {calculateTotal().toLocaleString()}</strong>
+                    <strong>Total Harga: Rp {calculateTotal().toLocaleString('Id-ID')}</strong>
                 </div>
                 <div className="payment-method">
                     <label>

@@ -12,12 +12,16 @@ const ProductCardAdmin = ({ product, productList, setProductList }) => {
         setProductList(updatedProducts);
     };
 
+    const formatCurrency = (price) => {
+        return `Rp ${Number(price).toLocaleString('id-ID')}`;
+    };
+
     return (
         <div className="product-card-admin">
-            <img src="/Kandang-Murai.jpg" alt={product.name} className="product-image" />
+            <img src={product.image} alt={product.name} className="product-image" />
             <div className="product-details">
                 <h3 className="product-name">{product.name}</h3>
-                <p className="product-price">Harga: Rp{product.price.toLocaleString()}</p>
+                <p className="product-price">Harga: {formatCurrency(product.price)}</p>
                 <p className="product-sold">Terjual: {product.sold}</p>
                 <p className="product-stock">Stok: {product.stock}</p>
                 <div className="product-actions">

@@ -1,15 +1,18 @@
 // AdminDashboard.js
 import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PopupMenu from '../../components/PopupMenu.js';
 import { ProfileAdminContext } from '../../context/ProfileAdminContext';
 import ProductCardAdmin from '../../components/ProductCardAdmin';
-import products from '../../data/ProductData.js';
+import { ProductContext } from '../../context/ProductContext';
 import './AdminDashboard.css';
 
 const AdminDashboard = () => {
+    const { productList, setProductList } = useContext(ProductContext);
     const { profile } = useContext(ProfileAdminContext);
     const [showPopup, setShowPopup] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
+    const navigate = useNavigate();
 
     const role = 'admin';
 
@@ -17,11 +20,8 @@ const AdminDashboard = () => {
         setShowPopup(!showPopup);
     };
 
-    const [productList, setProductList] = useState(products);
-
     const handleAddProduct = () => {
-        // Tambah logika untuk menambahkan produk baru
-        alert("Tambah produk baru");
+        navigate('/add-product');
     };
 
     const filteredProducts = productList.filter(product => 

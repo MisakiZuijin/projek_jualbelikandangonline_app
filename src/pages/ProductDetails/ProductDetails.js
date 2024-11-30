@@ -41,6 +41,10 @@ const ProductDetails = () => {
         return null;
     }
 
+    const formatCurrency = (price) => {
+        return `Rp ${Number(price).toLocaleString('id-ID')}`;
+    };
+
     return (
         <div className="product-details-container">
             <header className="header">
@@ -65,7 +69,7 @@ const ProductDetails = () => {
                         <p>Rating: {product.rating} ★</p>
                         <p>Sold: {product.sold}</p>
                         <p>Stock: {product.stock}</p>
-                        <p>Price: Rp {product.price.toLocaleString()}</p>
+                        <p>Price: {formatCurrency(product.price)}</p>
                         <p>Payment Methods: {product.paymentMethods ? product.paymentMethods.join(', ') : 'N/A'}</p>
                         <p className="description-content">{product.description || 'No description available.'}</p>
                     </div>

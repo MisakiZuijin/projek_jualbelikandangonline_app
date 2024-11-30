@@ -13,15 +13,19 @@ const CartItem = ({ item, onRemove, onQuantityChange }) => {
         onRemove(item.id);
     };
 
+    const formatCurrency = (price) => {
+        return `Rp ${Number(price).toLocaleString('id-ID')}`;
+    };
+
     return (
         <div className="cart-item">
             <img src={item.image} alt={item.name} className="cart-item-image" />
             <div className="cart-item-details">
                 <h2 className="cart-item-name">{item.name}</h2>
                 <div className="cart-item-price-detail">
-                    <p className="cart-item-price">Rp {item.price.toLocaleString()}</p>
+                    <p className="cart-item-price">{formatCurrency(item.price)}</p>
                     <p className="cart-item-total">
-                        Total: Rp {(item.price * item.quantity).toLocaleString()}
+                        Total: Rp {(item.price * item.quantity).toLocaleString('id-ID')}
                     </p>
                     <input
                         type="number"
