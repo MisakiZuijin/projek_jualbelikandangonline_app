@@ -1,16 +1,21 @@
 import React, { useState, useContext } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { ProfileAdminContext } from '../../context/ProfileAdminContext';
 import { ProfileUserContext } from '../../context/ProfileUserContext';
+import { PurchaseHistoryContext } from '../../context/PurchaseHistoryContext';
+import { CartContext } from '../../context/CartContext';
 import BackButton from '../../components/ButtonBack';
 import './PayNow.css';
 
 const PayNow = () => {
+    const navigate = useNavigate();
     const location = useLocation();
+    const { clearCart } = useContext(CartContext);
     const { profile: adminProfile } = useContext(ProfileAdminContext);  // Accessing admin data
     const { profile: userProfile } = useContext(ProfileUserContext);    // Accessing user data
+    const { addTransaction } = useContext(PurchaseHistoryContext);
 
     const [paymentMethod, setPaymentMethod] = useState('');
     const [quantities, setQuantities] = useState({});
@@ -141,13 +146,43 @@ const PayNow = () => {
     };    
 
     const handlePayment = () => {
+        const orderDate = new Date().toLocaleDateString();
+
+        if (!paymentMethod) {
+            alert('Pilih metode pembayaran terlebih dahulu!');
+            return;
+        }
+
+        // Add transaction to history context
+        const transaction = {
+            id: Date.now(), // Unique ID for transaction
+            products: products.map((product) => ({
+                id: product.id,
+                name: product.name,
+                image: product.image,
+                price: product.price,
+                quantity: quantities[product.id] || 1,
+            })),
+            total: calculateTotal(),
+            buyer: userProfile.username,
+            address: userProfile.address,
+            date: orderDate,
+            paymentMethod,
+            shippingCost,
+        };
+        addTransaction(transaction);
+
+        // Handle payment
         if (paymentMethod === 'COD') {
             alert('Pesanan Anda telah dikonfirmasi untuk COD!');
         } else if (paymentMethod === 'Transfer') {
             handleDownloadInvoice();
-        } else {
-            alert('Pilih metode pembayaran terlebih dahulu!');
         }
+
+        // window.history.pushState({prevUrl: window.location.href}, null, "/history-user")
+        // Navigate to history page after payment
+        navigate('/history-user', {state: {prevUrl: window.location.href}});
+        clearCart();
     };
 
     const formatCurrency = (price) => {

@@ -1,60 +1,26 @@
 // src/components/History/History.js
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ProfileUserContext } from '../../context/ProfileUserContext';
+import { PurchaseHistoryContext } from '../../context/PurchaseHistoryContext';
 import PopupMenu from '../../components/PopupMenu.js';
 import BackButton from '../../components/ButtonBack.js';
 import './History.css';
 
 const History = () => {
+    const navigate = useNavigate();
     const { profile } = useContext(ProfileUserContext);
+    const { history } = useContext(PurchaseHistoryContext);
     const [showPopup, setShowPopup] = useState(false);
     
     const role = 'user';
 
-    // Sample data of purchase history
-    const purchaseHistory = [
-        {
-            id: 1,
-            image: "/Kandang-Murai.jpg",
-            name: "Kandang Murai",
-            quantity: 2,
-            price: 200000,
-            total: 400000,
-            buyer: "Nur Rahman Saleh",
-            address: "123 Main St, City",
-            date: "2024-11-05",
-            paymentMethod: "COD",
-        },
-        {
-            id: 2,
-            image: "/Kandang-Murai.jpg",
-            name: "Kandang Murai",
-            quantity: 1,
-            price: 200000,
-            total: 200000,
-            buyer: "Nur Rahman Saleh",
-            address: "123 Main St, City",
-            date: "2024-11-04",
-            paymentMethod: "Transfer",
-        },
-        {
-            id: 3,
-            image: "/Kandang-Murai.jpg",
-            name: "Kandang Murai",
-            quantity: 1,
-            price: 200000,
-            total: 200000,
-            buyer: "Nur Rahman Saleh",
-            address: "123 Main St, City",
-            date: "2024-11-04",
-            paymentMethod: "Transfer",
-        }
-        // Add more purchases as needed
-    ];
-
     const togglePopup = () => {
         setShowPopup(!showPopup);
+    };
+
+    const handleViewReceipt = (transaction) => {
+        navigate(`/receipt-user/${transaction.id}`, { state: { transaction } });
     };
 
     return (
@@ -72,28 +38,18 @@ const History = () => {
             <main className="history-content">
                 <h2>Purchase History</h2>
                 <div className="history-list">
-                    {purchaseHistory.map(item => (
-                        <div key={item.id} className="history-item">
-                            <img src={item.image} alt={item.name} className="item-image" />
+                    {history.map((transaction) => (
+                        <div key={transaction.id} className="history-item">
+                            <img src={transaction.products[0].image} alt={transaction.products[0].name} className="item-image" />
                             <div className="item-details">
-                                <h3 className="item-name">{item.name}</h3>
-                                <div className="item-name-container">
-                                    <p>Quantity: {item.quantity}</p>
-                                    <p>Price: Rp {item.price.toLocaleString('Id-ID')}</p>
-                                    <p>Total: Rp {item.total.toLocaleString('Id-ID')}</p>
-                                </div>
-                                <div className="buyer-container">
-                                    <p>Buyer: {item.buyer}</p>
-                                    <p>Address: {item.address}</p>
-                                    <p>Date: {item.date}</p>
-                                    <p>Payment Method: {item.paymentMethod}</p>
-                                </div>
-                                
-                                <Link 
-                                    to={`/receipt-User/${item.id}`} 
-                                    className="receipt-button">
-                                    Lihat Bukti
-                                </Link>
+                                <h3 className="item-name">{transaction.products[0].name}</h3>
+                                <p>Total Items: {transaction.products.length}</p>
+                                <p>Price: Rp {transaction.products[0].price.toLocaleString('id-ID')}</p>
+                                <p>Total Price: Rp {transaction.total.toLocaleString('Id-ID')}</p>
+                                <p>Total Ongkir: Rp {transaction.shippingCost.toLocaleString('id-ID')}</p>
+                                <p>Date: {transaction.date}</p>
+                                <p>Payment Method: {transaction.paymentMethod}</p>
+                                <button onClick={() => handleViewReceipt(transaction)} className="receipt-button">Lihat Bukti</button>
                             </div>
                         </div>
                     ))}

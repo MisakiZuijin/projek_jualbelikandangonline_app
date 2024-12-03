@@ -18,37 +18,40 @@ import { ProfileUserProvider } from './context/ProfileUserContext';
 import { ProfileAdminProvider } from './context/ProfileAdminContext';
 import { CartProvider } from './context/CartContext';
 import { ProductProvider } from './context/ProductContext';
+import { PurchaseHistoryProvider } from './context/PurchaseHistoryContext';
 
 function App() {
   return (
-    <ProductProvider>
-      <CartProvider>
-        <ProfileUserProvider>
-          <ProfileAdminProvider>
-            <Router>
-              <div className="App">
-                <Routes>
-                  <Route path="/" element={<Login />} />
-                  <Route path="/Register" element={<Register />}/>
-                  <Route path="/home" element={<Home />} />
-                  <Route path="/admin" element={<AdminDashboard />} />
-                  <Route path="/edit-profile-user" element={<EditUserProfile />} />
-                  <Route path="/edit-profile-admin" element={<EditAdminProfile />} />
-                  <Route path="/history-user" element={<HistoryUser />} />
-                  <Route path="/history-Admin" element={<HistoryAdmin />} />
-                  <Route path="/receipt-User/:id" element={<ReceiptUser />} />
-                  <Route path="/receipt-Admin/:id" element={<ReceiptAdmin />} />
-                  <Route path="/product/:id" element={<ProductDetails />} />
-                  <Route path="/cart" element={<Cart />} />
-                  <Route path="/pay-now" element={<PayNow />} />
-                  <Route path="/add-product" element={<AddProduct />} />
-                </Routes>
-              </div>
-            </Router>
-          </ProfileAdminProvider>
-        </ProfileUserProvider>
-      </CartProvider>
-    </ProductProvider>
+    <PurchaseHistoryProvider>
+      <ProductProvider>
+        <CartProvider>
+          <ProfileUserProvider>
+            <ProfileAdminProvider>
+              <Router>
+                <div className="App">
+                  <Routes>
+                    <Route path="/" element={<Login />} />
+                    <Route path="/Register" element={<Register />}/>
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/admin" element={<AdminDashboard />} />
+                    <Route path="/edit-profile-user" element={<EditUserProfile />} />
+                    <Route path="/edit-profile-admin" element={<EditAdminProfile />} />
+                    <Route path="/history-user" element={<HistoryUser />} />
+                    <Route path="/history-Admin" element={<HistoryAdmin />} />
+                    <Route path="/receipt-User/:id" element={<ReceiptUser />} />
+                    <Route path="/receipt-Admin/:id" element={<ReceiptAdmin />} />
+                    <Route path="/product/:id" element={<ProductDetails />} />
+                    <Route path="/cart" element={<Cart />} />
+                    <Route path="/pay-now" element={<PayNow />} />
+                    <Route path="/add-product" element={<AddProduct />} />
+                  </Routes>
+                </div>
+              </Router>
+            </ProfileAdminProvider>
+          </ProfileUserProvider>
+        </CartProvider>
+      </ProductProvider>
+    </PurchaseHistoryProvider>
   );
 }
 
