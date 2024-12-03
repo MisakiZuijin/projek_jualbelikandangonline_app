@@ -1,7 +1,7 @@
 // src/components/ProfileForm.js
 import React from 'react';
 
-const ProfileForm = ({ username, setUsername, email, setEmail, address, setAddress, phone, setPhone, onSubmit }) => {
+const ProfileForm = ({ username, setUsername, email, setEmail, address, setAddress, phone, setPhone, rekening, setRekening, onSubmit }) => {
     return (
         <form onSubmit={onSubmit} className="edit-profile-form">
             <div className="form-group">
@@ -37,9 +37,19 @@ const ProfileForm = ({ username, setUsername, email, setEmail, address, setAddre
             <div className="form-group">
                 <label>Phone Number</label>
                 <input
-                    type="tel"
+                    type="number"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
+                    required
+                />
+            </div>
+
+            <div className="form-group">
+                <label>Rekening Number</label>
+                <input
+                    type="tel"
+                    value={rekening}
+                    onChange={(e) => setRekening(e.target.value)}
                     required
                 />
             </div>

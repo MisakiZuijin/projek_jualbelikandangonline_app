@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ProductContext } from '../../context/ProductContext';
+import BackButton from '../../components/ButtonBack';
 import './AddProduct.css';
 
 const TambahProduk = () => {
@@ -52,33 +53,36 @@ const TambahProduk = () => {
 
     return (
         <div className="tambah-produk-container">
-            <h2>Tambah Produk</h2>
-            <form className="tambah-produk-form">
-                <div className="form-group">
-                    <label>Foto Produk</label>
-                    <input type="file" onChange={handleImageUpload} />
-                    {productData.image && <img src={productData.image} alt="Preview" style={{ width: '100px', marginTop: '10px' }} />}
-                </div>
-                <div className="form-group">
-                    <label>Nama Produk</label>
-                    <input type="text" name="name" value={productData.name} onChange={handleChange} placeholder="Masukkan nama produk" />
-                </div>
-                <div className="form-group">
-                    <label>Harga Produk</label>
-                    <input type="number" name="price" value={productData.price} onChange={handleChange} placeholder="Masukkan harga produk" />
-                </div>
-                <div className="form-group">
-                    <label>Stok Produk</label>
-                    <input type="number" name="stock" value={productData.stock} onChange={handleChange} placeholder="Masukkan stok produk" />
-                </div>
-                <div className="form-group">
-                    <label>Deskripsi Produk</label>
-                    <textarea name="description" value={productData.description} onChange={handleChange} placeholder="Masukkan deskripsi produk"></textarea>
-                </div>
-                <button type="button" onClick={handleSave}>
-                    Simpan
-                </button>
-            </form>
+            <div className="tambah-produk-content">
+                <h2>Tambah Produk</h2>
+                <form className="tambah-produk-form">
+                    <div className="form-group">
+                        <label>Foto Produk</label>
+                        {productData.image && <img src={productData.image} alt="Preview" style={{ width: '125px', marginTop: '10px', alignSelf: 'center', borderRadius: '5px' }} />}
+                        <input type="file" onChange={handleImageUpload} />
+                    </div>
+                    <div className="form-group">
+                        <label>Nama Produk</label>
+                        <input type="text" name="name" value={productData.name} onChange={handleChange} placeholder="Masukkan nama produk" />
+                    </div>
+                    <div className="form-group">
+                        <label>Harga Produk</label>
+                        <input type="number" name="price" value={productData.price} onChange={handleChange} placeholder="Masukkan harga produk" />
+                    </div>
+                    <div className="form-group">
+                        <label>Stok Produk</label>
+                        <input type="number" name="stock" value={productData.stock} onChange={handleChange} placeholder="Masukkan stok produk" />
+                    </div>
+                    <div className="form-group">
+                        <label>Deskripsi Produk</label>
+                        <textarea name="description" value={productData.description} onChange={handleChange} placeholder="Masukkan deskripsi produk"></textarea>
+                    </div>
+                    <button className="button-save" type="button" onClick={handleSave}>
+                        Simpan
+                    </button>
+                </form>
+            </div>
+            <BackButton />
         </div>
     );
 };

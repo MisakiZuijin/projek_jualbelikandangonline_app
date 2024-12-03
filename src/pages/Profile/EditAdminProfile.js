@@ -40,6 +40,8 @@ const EditAdminProfile = () => {
                     setAddress={(value) => updateProfile({ address: value })}
                     phone={profile.phone}
                     setPhone={(value) => updateProfile({ phone: value })}
+                    rekening={profile.rekening}
+                    setRekening={(value) => updateProfile({ rekening: value })}
                     onSubmit={handleSubmit}
                 />
             </div>

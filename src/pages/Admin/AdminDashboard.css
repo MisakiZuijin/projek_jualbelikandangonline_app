@@ -19,7 +19,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    width: 99%;
     padding: 20px;
     border-radius: 0px 0px 75px 0px;
     background: linear-gradient(135deg,#61994D, #385c2b);
