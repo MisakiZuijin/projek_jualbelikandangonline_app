@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import './Register.css';
 
 const Register = () => {
@@ -13,7 +13,7 @@ const Register = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
-    const navigate = useNavigate(); // Initialize navigate
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({
@@ -36,31 +36,38 @@ const Register = () => {
         return true;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (!validateForm()) return;
 
-        // Simulate saving user data to localStorage
-        const newUser = { ...formData };
-        const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
-        existingUsers.push(newUser);
-        localStorage.setItem('users', JSON.stringify(existingUsers));
+        try {
+            const response = await fetch('http://localhost:4000/api/users/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: formData.username,
+                    email: formData.email,
+                    password: formData.password, // Password akan di-*hash* di backend
+                }),
+            });
 
-        setSuccess('Registration successful!');
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Registration failed');
+            }
 
-        // Navigate to the login page after successful registration
-        setTimeout(() => {
-            navigate('/'); // Navigating to the login page
-        }, 1000); // Wait for 1 second before navigating to allow success message to show
+            setSuccess('Registration successful!');
 
-        // Reset form fields
-        setFormData({
-            username: '',
-            email: '',
-            password: '',
-            confirmPassword: '',
-        });
+            // Navigate to the login page after successful registration
+            setTimeout(() => {
+                navigate('/'); // Navigating to the login page
+            }, 1000);
+        } catch (error) {
+            setError(error.message);
+        }
     };
 
     return (

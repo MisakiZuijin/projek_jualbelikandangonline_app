@@ -9,25 +9,35 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        
-        // Logika autentikasi sederhana dengan pengecekan role berdasarkan email
-        if (email === 'admin@gmail.com' && password === 'adminpass') {
-            navigate('/admin');
-            return;
-        }
-
-        const users = JSON.parse(localStorage.getItem('users')) || [];
-        const user = users.find(u => u.email === email && u.password === password);
-
-        if (user) {
-            // Navigasi ke halaman beranda pengguna
-            navigate('/home');
-        } else {
+    
+        try {
+            const response = await fetch('http://localhost:4000/api/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+    
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Login failed');
+            }
+    
+            const data = await response.json();
+    
+            if (data.role === 'admin') {
+                navigate('/admin');
+            } else {
+                navigate('/home');
+            }
+        } catch (error) {
             alert('Login gagal, periksa email dan password Anda');
+            console.error('Login error:', error);
         }
-    };
+    };    
 
     return (
         <div className="login-container">
