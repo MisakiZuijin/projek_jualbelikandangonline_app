@@ -26,7 +26,7 @@ const PayNow = () => {
     // Set initial quantities
     if (Object.keys(quantities).length === 0) {
         products.forEach(product => {
-            quantities[product.id] = product.quantity || 1;
+            quantities[product.id_product] = product.quantity || 1;
         });
     }
 
@@ -37,7 +37,7 @@ const PayNow = () => {
     const calculateTotal = () => {
         // Total harga produk
         const productTotal = products.reduce((total, product) => {
-            const quantity = quantities[product.id] || 1;
+            const quantity = quantities[product.id_product] || 1;
             return total + product.price * quantity;
         }, 0);
 
@@ -96,7 +96,7 @@ const PayNow = () => {
         doc.setFontSize(10);
         const headers = ["Produk", "Quantity", "Harga", "Total"];
         const tableData = products.map(product => {
-            const quantity = quantities[product.id] || 1;
+            const quantity = quantities[product.id_product] || 1;
             const total = product.price * quantity;
             return [product.name, quantity, `Rp ${product.price.toLocaleString('Id-ID')}`, `Rp ${total.toLocaleString('Id-ID')}`];
         });
@@ -157,7 +157,7 @@ const PayNow = () => {
         const transaction = {
             id: Date.now(), // Unique ID for transaction
             products: products.map((product) => ({
-                id: product.id,
+                id: product.id_product,
                 name: product.name,
                 image: product.image,
                 price: product.price,
@@ -195,13 +195,13 @@ const PayNow = () => {
                 <h2 className="pay-now-title">Bayar Sekarang</h2>
                 <div className="products-list">
                     {products.map((product) => (
-                        <div key={product.id} className="product-item">
+                        <div key={product.id_product} className="product-item">
                             <span>{product.name}</span>
                             <span>Harga: {formatCurrency(product.price)}</span>
                             <input
                                 type="number"
                                 min="1"
-                                value={quantities[product.id]}
+                                value={quantities[product.id_product]}
                                 onChange={(e) =>
                                     handleQuantityChange(product.id, e.target.value)
                                 }
@@ -211,7 +211,7 @@ const PayNow = () => {
                 </div>
                 <div className="total">
                     <strong>Total Harga Produk: Rp {products.reduce((total, product) => {
-                        const quantity = quantities[product.id] || 1;
+                        const quantity = quantities[product.id_product] || 1;
                         return total + product.price * quantity;
                     }, 0).toLocaleString('Id-ID')}</strong>
                 </div>

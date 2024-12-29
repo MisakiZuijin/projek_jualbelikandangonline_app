@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ProfileUserContext } from '../../context/ProfileUserContext';
 import { ProductContext } from '../../context/ProductContext.js';
 import PopupMenu from '../../components/PopupMenu.js';
@@ -24,13 +24,8 @@ const Home = () => {
         navigate('/cart');
     };
 
-    const handleProductClick = (product) => {
-        // Pastikan hanya data produk sederhana yang dikirimkan
-        navigate(`/product/${product.id}`, { state: { product } });
-    };
-
-    const filteredProducts = productList.filter(product => 
-        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    const filteredProducts = productList.filter(product =>
+        product.name_product.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
@@ -39,8 +34,8 @@ const Home = () => {
                 <h1 className="title">CAGE SHOP</h1>
                 <input 
                     type="text" 
-                    className="search-bar" 
                     placeholder="Cari Produk..." 
+                    className="search-bar"
                     value={searchTerm} 
                     onChange={(e) => setSearchTerm(e.target.value)} 
                 />
@@ -53,9 +48,12 @@ const Home = () => {
                 {showPopup && <PopupMenu role={role} onClose={togglePopup} />}
             </header>
 
-            <main className="product-display">
-                {filteredProducts.map((product) => (
-                    <ProductCard key={product.id} product={product} onClick={handleProductClick} />
+            <main className="product-list">
+                {filteredProducts.map(product => (
+                    <ProductCard 
+                        key={product.id_product} 
+                        product={product}
+                    />
                 ))}
             </main>
 

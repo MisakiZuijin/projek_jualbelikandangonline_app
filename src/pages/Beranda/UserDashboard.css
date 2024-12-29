@@ -73,12 +73,11 @@
 }
 
 /* Product Display */
-.product-display {
+.product-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
     gap: 20px;
     padding: 100px 20px 20px 20px;
-    background-color: #f4f4f9;
     flex: 1;
     place-items: center; /* Tambahkan ini untuk memusatkan produk */
 }

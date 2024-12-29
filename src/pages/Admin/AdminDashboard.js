@@ -24,8 +24,8 @@ const AdminDashboard = () => {
         navigate('/add-product');
     };
 
-    const filteredProducts = productList.filter(product => 
-        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    const filteredProducts = productList.filter(product =>
+        product.name_product.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
@@ -52,9 +52,9 @@ const AdminDashboard = () => {
                 <button className="add-product-button" onClick={handleAddProduct}>Tambah Produk</button>
                 <div className="product-list">
                     {filteredProducts.map((product) => (
-                        <div key={product.id}>
+                        <div key={product.id_product}>
                             <ProductCardAdmin
-                                key={product.id}
+                                key={product.id_product}
                                 product={product}
                                 productList={productList}
                                 setProductList={setProductList}

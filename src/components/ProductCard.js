@@ -1,21 +1,28 @@
 import React from 'react';
-import './CSS/ProductCard.css'; // Buat file CSS khusus untuk komponen ini, jika perlu
+import { Link } from 'react-router-dom';
+import './CSS/ProductCard.css'; // Tambahkan CSS sesuai kebutuhan
 
-const ProductCard = ({ product , onClick }) => {
+const ProductCard = ({ product }) => {
 
     const formatCurrency = (price) => {
         return `Rp ${Number(price).toLocaleString('id-ID')}`;
     };
 
     return (
-        <div className="product-card" onClick={() => onClick(product)}>
-            <img src={product.image} alt={product.name} className="product-image" />
-            <h2 className="product-name">{product.name}</h2>
-            <p className="product-price"> {formatCurrency(product.price)}</p>
-            <p className="product-sold">Sold: {product.sold}</p>
-            <p className="product-stock">Stock: {product.stock}</p>
-        </div>
+        <Link to={`/product/${product.id_product}`} state={{ product }} className="product-card-link">
+            <div className="product-card">
+                <img
+                    src={`http://localhost:4000/uploads/${product.img_product}`}
+                    alt={product.name_product}
+                    className="product-image"
+                />
+                <h2 className="product-name">{product.name_product}</h2>
+                <p className="product-price">Price: Rp {formatCurrency(product.price)}</p>
+                <p className="product-stock">Stock: {product.stock}</p>
+            </div>
+        </Link>
     );
+
 };
 
 export default ProductCard;

@@ -50,38 +50,43 @@ const ProductDetails = () => {
             <header className="header">
                 <h1 className="title">CAGE SHOP</h1>
                 <div className="user-info">
-                    <i className="fas fa-shopping-cart cart-icon" onClick={handleCart} to="/cart"></i>
+                    <i className="fas fa-shopping-cart cart-icon" onClick={handleCart}></i>
                     <span className="user-name" onClick={togglePopup}>{profile.username}</span>
-                    <img className="profile-pic-product" src={profile.profilePic} alt="Profile" onClick={togglePopup}/>
+                    <img className="profile-pic-product" src={profile.profilePic} alt="Profile" onClick={togglePopup} />
                 </div>
-
                 {showPopup && <PopupMenu role={role} onClose={togglePopup} />}
             </header>
-
+    
             <main className="product-details-content">
                 <div className="product-title-image">
-                    <img src={product.image} alt={product.name} className="product-image-large" />
+                    <img
+                        src={`http://localhost:4000/uploads/${product.img_product}`}
+                        alt={product.name_product}
+                        className="product-image-large"
+                    />
                 </div>
                 <div className="product-content">
                     <div className="product-description">
-                        <h2>{product.name}</h2>
-                        <p>Area: {product.area}</p>
-                        <p>Rating: {product.rating} ★</p>
-                        <p>Sold: {product.sold}</p>
+                        <h2>{product.name_product}</h2>
+                        <p>Rating: {product.rating || 0} ★</p>
+                        <p>Sold: {product.sold || 0}</p>
                         <p>Stock: {product.stock}</p>
                         <p>Price: {formatCurrency(product.price)}</p>
-                        <p>Payment Methods: {product.paymentMethods ? product.paymentMethods.join(', ') : 'N/A'}</p>
-                        <p className="description-content">{product.description || 'No description available.'}</p>
+                        <p className="description-content">{product.desc || 'No description available.'}</p>
                     </div>
                     <div className="product-button">
-                        <button onClick={handleAddToCart} className="add-to-cart-button">Tambah Ke Keranjang</button>
-                        <button onClick={handleBuyNow} className="buy-now-button">Beli Sekarang</button>
+                        <button onClick={handleAddToCart} className="add-to-cart-button">
+                            Tambah Ke Keranjang
+                        </button>
+                        <button onClick={handleBuyNow} className="buy-now-button">
+                            Beli Sekarang
+                        </button>
                     </div>
                 </div>
             </main>
-
-            <BackButton/>
-
+    
+            <BackButton />
+    
             <footer className="footer-product">
                 <p>&copy; 2024 CAGE SHOP. All rights reserved.</p>
             </footer>

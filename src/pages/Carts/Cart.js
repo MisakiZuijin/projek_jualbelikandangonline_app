@@ -47,7 +47,7 @@ const Cart = () => {
                 {cartItems.length > 0 ? (
                     cartItems.map(item => (
                         <CartItem
-                            key={item.id}
+                            key={item.id_product}
                             item={item}
                             onRemove={removeFromCart}
                             onQuantityChange={updateQuantity}

@@ -18,7 +18,11 @@ const ProductCardAdmin = ({ product, productList, setProductList }) => {
 
     return (
         <div className="product-card-admin">
-            <img src={product.image} alt={product.name} className="product-image" />
+            <img
+                src={`http://localhost:4000/uploads/${product.img_product}`}
+                alt={product.name_product}
+                className="product-image"
+            />
             <div className="product-details">
                 <h3 className="product-name">{product.name}</h3>
                 <p className="product-price">Harga: {formatCurrency(product.price)}</p>
