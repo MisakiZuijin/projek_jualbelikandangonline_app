@@ -1,15 +1,31 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './CSS/ProductCardAdmin.css';
 
 const ProductCardAdmin = ({ product, productList, setProductList }) => {
+    const navigate = useNavigate();
 
     const handleEdit = () => {
-        alert(`Edit produk ${product.name}`);
+        navigate(`/admin/edit-product/${product.id_product}`); // Navigasi ke halaman edit produk
     };
 
-    const handleDelete = () => {
-        const updatedProducts = productList.filter((item) => item.id !== product.id);
-        setProductList(updatedProducts);
+    const handleDelete = async () => {
+        try {
+            const response = await fetch(`http://localhost:4000/api/products/${product.id_product}`, {
+                method: 'DELETE',
+            });
+
+            if (!response.ok) {
+                throw new Error('Gagal menghapus produk');
+            }
+
+            alert('Produk berhasil dihapus');
+            const updatedProducts = productList.filter((item) => item.id !== product.id_product);
+            setProductList(updatedProducts);
+        } catch (error) {
+            alert('Terjadi kesalahan saat menghapus produk: ' + error.message);
+            console.error('Error deleting product:', error);
+        }
     };
 
     const formatCurrency = (price) => {
@@ -24,7 +40,7 @@ const ProductCardAdmin = ({ product, productList, setProductList }) => {
                 className="product-image"
             />
             <div className="product-details">
-                <h3 className="product-name">{product.name}</h3>
+                <h3 className="product-name">{product.name_product}</h3>
                 <p className="product-price">Harga: {formatCurrency(product.price)}</p>
                 <p className="product-sold">Terjual: {product.sold}</p>
                 <p className="product-stock">Stok: {product.stock}</p>

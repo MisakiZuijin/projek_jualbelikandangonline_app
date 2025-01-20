@@ -14,6 +14,7 @@ import ReceiptAdmin from './pages/Receipt/ReceiptAdmin.js';
 import HistoryAdmin from './pages/History/HistoryAdmin.js'
 import EditAdminProfile from './pages/Profile/EditAdminProfile.js';
 import AddProduct from './pages/AddProduct/AddProduct.js';
+import EditProduct from './pages/EditProduct/EditProduct.js'
 import { ProfileUserProvider } from './context/ProfileUserContext';
 import { ProfileAdminProvider } from './context/ProfileAdminContext';
 import { CartProvider } from './context/CartContext';
@@ -44,6 +45,7 @@ function App() {
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/pay-now" element={<PayNow />} />
                     <Route path="/add-product" element={<AddProduct />} />
+                    <Route path="/admin/edit-product/:id" element={<EditProduct />} />
                   </Routes>
                 </div>
               </Router>
